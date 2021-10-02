@@ -46,5 +46,9 @@ public class BallTest {
         Ball answer = new Ball(1,9);
         BallStatus ballStatus = answer.play(new Ball(2,3));
         assertThat(ballStatus).isEqualTo(BallStatus.Nothing);
+
+        answer = new Ball(1,9);
+        ballStatus = answer.play(new Ball(1,3));
+        assertThat(ballStatus).isEqualTo(BallStatus.Nothing);
     }
 }
