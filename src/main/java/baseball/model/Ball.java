@@ -13,4 +13,15 @@ public class Ball {
     public boolean isValid() {
         return no <= 9 && no > 0;
     }
+
+
+    public BallStatus play(Ball ball) {
+        if(this.no == ball.no && this.position == ball.position){
+            return BallStatus.Strike;
+        }
+        if(this.no == ball.no && this.position != ball.position){
+            return BallStatus.Ball;
+        }
+        return BallStatus.Nothing;
+    }
 }
