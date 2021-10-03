@@ -14,11 +14,50 @@ public class PlayResult {
     }
 
     public void report(BallStatus status) {
-        if(status.isStrike()){
+        if (status.isStrike()) {
             this.strike += 1;
         }
-        if(status.isBall()){
+        if (status.isBall()) {
             this.ball += 1;
         }
     }
+
+    public boolean isGameEnd() {
+        return strike==3;
+    }
+
+    public String resultReport() {
+        if (nothing()) {
+            return "낫싱";
+        }
+        if (noBall()) {
+            return strike + "스트라이크";
+        }
+        if (noStrike()) {
+            return ball + "볼";
+        }
+        return strike + "스트라이크 " + ball + "볼";
+    }
+
+    private boolean nothing() {
+        if (ball == 0 && strike == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean noStrike() {
+        if (strike == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean noBall() {
+        if (ball == 0) {
+            return true;
+        }
+        return false;
+    }
+
 }
