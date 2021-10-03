@@ -9,11 +9,11 @@ public class Balls {
     private int size = 3;
 
     public Balls(List<Integer> answer) {
-        ballList = new ArrayList<Ball>();
         createBalls(answer);
     }
 
     private void createBalls(List<Integer> answer) {
+        ballList = new ArrayList<Ball>();
         for (int i = 0; i < size; i++) {
             ballList.add(new Ball(i + 1, answer.get(i)));
         }
@@ -46,6 +46,7 @@ public class Balls {
         }
         return BallStatus.Strike;
     }
+
 
 
 }
