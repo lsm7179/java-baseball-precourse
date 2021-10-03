@@ -27,32 +27,44 @@ public class PlayController {
         play();
     }
 
-    public void play(){
+    private void play(){
         try {
             View.EnterNumber.print();
             userBalls = inputHandler.makeNumbers();
             PlayResult playResult = cumputerBalls.play(userBalls);
             View.playResult(playResult.resultReport());
-            isGameEnd(playResult);
+            isWin(playResult);
         }catch (Exception e){
             System.out.println(e.getMessage());
             play();
         }
     }
 
-    private void isGameEnd(PlayResult playResult) {
+    private void isWin(PlayResult playResult) {
         if(playResult.isGameEnd()){
-            gameEnd();
+            View.GameEnd.print();
+            restartOrQuit();
             return;
         }
         play();
     }
 
-    //게임 종료
-    public void gameEnd(){
-    // ErrorOnlyOneAndTwo("[ERROR]1, 2만 입력해주세요."),
+    private void restartOrQuit(){
+        try {
+            View.RestartGameOrQuit.print();
+            isGameEnd();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            restartOrQuit();
+        }
     }
 
+    private void isGameEnd() {
+        if (inputHandler.isEnd()) {
+            System.exit(0);
+        }
+        start();
+    }
 
 
 }

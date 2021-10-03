@@ -70,4 +70,17 @@ public class InputHandler {
         return result;
     }
 
+    public boolean isEnd() {
+        String input = Console.readLine();
+        validateEmpty(input);
+        if (input.equals("1")) {
+            return true;
+        }
+        if (input.equals("2")) {
+            return false;
+        }
+        throw new IllegalArgumentException("[ERROR]1, 2만 입력해주세요.");
+    }
+
+
 }
