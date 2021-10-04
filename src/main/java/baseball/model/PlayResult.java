@@ -23,20 +23,31 @@ public class PlayResult {
     }
 
     public boolean isPlaying() {
-        return strike!=3;
+        return strike != 3;
     }
 
     public String resultReport() {
+        if (strikeAndBall()) {
+            return strike + "스트라이크 " + ball + "볼";
+        }
+        return strikeBallNothing();
+    }
+
+    private String strikeBallNothing() {
         if (nothing()) {
             return "낫싱";
         }
         if (noBall()) {
             return strike + "스트라이크";
         }
-        if (noStrike()) {
-            return ball + "볼";
+        return ball + "볼";
+    }
+
+    private boolean strikeAndBall() {
+        if (ball > 0 && strike > 0) {
+            return true;
         }
-        return strike + "스트라이크 " + ball + "볼";
+        return false;
     }
 
     private boolean nothing() {

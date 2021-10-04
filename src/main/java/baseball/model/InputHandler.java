@@ -76,7 +76,6 @@ public class InputHandler {
     }
 
     public boolean isRegame(String input) {
-        validateEmpty(input);
         if (input.equals("1")) {
             return true;
         }
