@@ -7,21 +7,24 @@ import static org.assertj.core.api.Assertions.*;
 
 public class BallTest {
 
-    @DisplayName("숫자 1 ~ 9까지 검증")
+    @DisplayName("숫자 1 ~ 9까지 맞는지 검증")
     @Test
-    void ballValidTest() {
+    void ballValidTrueTest() {
         Ball ball = new Ball(1,9);
         assertThat(ball.isValid()).isTrue();
 
         ball = new Ball(1,1);
         assertThat(ball.isValid()).isTrue();
+    }
 
-        ball = new Ball(1,10);
+    @DisplayName("숫자 1 ~ 9 아닐때 검증")
+    @Test
+    void ballValidFalseTest() {
+        Ball ball = new Ball(1,10);
         assertThat(ball.isValid()).isFalse();
 
         ball = new Ball(1,0);
         assertThat(ball.isValid()).isFalse();
-
     }
 
     @DisplayName("볼 두개를 받아서 비교하여 스트라이크인지 아닌지 검증")
