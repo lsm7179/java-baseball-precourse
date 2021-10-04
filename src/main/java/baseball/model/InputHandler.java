@@ -1,7 +1,5 @@
 package baseball.model;
 
-import nextstep.utils.Console;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +12,7 @@ public class InputHandler {
     private String validation(String input) {
         validateEmpty(input);
         validateNotNumber(input);
+        validateNotPlus(input);
         validateSizeOverOrLack(input);
         validateEqualNumber(input);
         validateRange(input);
@@ -30,6 +29,7 @@ public class InputHandler {
     private void validateRange(String input) {
         List<Integer> list = addNumber(input);
         for (int no : list) {
+            System.out.println(no);
             isRange(no);
         }
     }
@@ -50,7 +50,13 @@ public class InputHandler {
         try {
             int number = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new NumberFormatException("[ERROR] 정수 숫자만 입력 가능합니다.");
+        }
+    }
+
+    private void validateNotPlus(String input) {
+        if (Integer.parseInt(input) <= 0) {
+            throw new NumberFormatException("[ERROR] 양수 숫자만 입력 가능합니다.");
         }
     }
 
@@ -69,8 +75,7 @@ public class InputHandler {
         return result;
     }
 
-    public boolean isRegame() {
-        String input = Console.readLine();
+    public boolean isRegame(String input) {
         validateEmpty(input);
         if (input.equals("1")) {
             return true;
@@ -80,6 +85,5 @@ public class InputHandler {
         }
         throw new IllegalArgumentException("[ERROR]1, 2만 입력해주세요.");
     }
-
 
 }

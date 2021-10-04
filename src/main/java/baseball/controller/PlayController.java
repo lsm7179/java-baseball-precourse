@@ -57,7 +57,8 @@ public class PlayController {
     }
 
     private void isGameEnd() {
-        if (inputHandler.isRegame()) {
+        String input = Console.readLine();
+        if (inputHandler.isRegame(input)) {
             start();
         }
     }
