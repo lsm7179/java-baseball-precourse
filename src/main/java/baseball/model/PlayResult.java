@@ -22,8 +22,8 @@ public class PlayResult {
         }
     }
 
-    public boolean isGameEnd() {
-        return strike==3;
+    public boolean isPlaying() {
+        return strike!=3;
     }
 
     public String resultReport() {

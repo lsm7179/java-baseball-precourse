@@ -24,25 +24,24 @@ public class PlayController {
     public void start() {
         makeCumputerBalls();
         playResult = new PlayResult();
-        while (!playResult.isGameEnd()) {
+        while (playResult.isPlaying()) {
             play();
         }
-        isWin();
+        win();
     }
 
     private void play() {
+        View.EnterNumber.print();
         String input = Console.readLine();
         try {
-            View.EnterNumber.print();
             playResult = cumputerBalls.play(inputHandler.makeNumbers(input));
             View.playResult(playResult.resultReport());
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            play();
         }
     }
 
-    private void isWin() {
+    private void win() {
         View.GameEnd.print();
         restartOrQuit();
     }
