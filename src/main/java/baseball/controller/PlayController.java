@@ -5,14 +5,13 @@ import baseball.model.InputHandler;
 import baseball.model.PlayResult;
 import baseball.model.RandomNumber;
 import baseball.view.View;
-
-import java.util.List;
+import nextstep.utils.Console;
 
 public class PlayController {
 
     private Balls cumputerBalls;
-    private List<Integer> userBalls;
     private InputHandler inputHandler;
+    private PlayResult playResult;
 
     public PlayController() {
         inputHandler = new InputHandler();
@@ -24,47 +23,44 @@ public class PlayController {
 
     public void start() {
         makeCumputerBalls();
-        play();
+        playResult = new PlayResult();
+        while (!playResult.isGameEnd()) {
+            play();
+        }
+        isWin();
     }
 
-    private void play(){
+    private void play() {
+        String input = Console.readLine();
         try {
             View.EnterNumber.print();
-            userBalls = inputHandler.makeNumbers();
-            PlayResult playResult = cumputerBalls.play(userBalls);
+            playResult = cumputerBalls.play(inputHandler.makeNumbers(input));
             View.playResult(playResult.resultReport());
-            isWin(playResult);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             play();
         }
     }
 
-    private void isWin(PlayResult playResult) {
-        if(playResult.isGameEnd()){
-            View.GameEnd.print();
-            restartOrQuit();
-            return;
-        }
-        play();
+    private void isWin() {
+        View.GameEnd.print();
+        restartOrQuit();
     }
 
-    private void restartOrQuit(){
+    private void restartOrQuit() {
         try {
             View.RestartGameOrQuit.print();
             isGameEnd();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             restartOrQuit();
         }
     }
 
     private void isGameEnd() {
-        if (inputHandler.isEnd()) {
-            System.exit(0);
+        if (inputHandler.isRegame()) {
+            start();
         }
-        start();
     }
-
 
 }

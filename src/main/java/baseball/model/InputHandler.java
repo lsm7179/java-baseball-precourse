@@ -7,12 +7,11 @@ import java.util.List;
 
 public class InputHandler {
 
-    public List<Integer> makeNumbers() {
-        return addNumber(input());
+    public List<Integer> makeNumbers(String input) {
+        return addNumber(validation(input));
     }
 
-    private String input() {
-        String input = Console.readLine();
+    private String validation(String input) {
         validateEmpty(input);
         validateNotNumber(input);
         validateSizeOverOrLack(input);
@@ -70,7 +69,7 @@ public class InputHandler {
         return result;
     }
 
-    public boolean isEnd() {
+    public boolean isRegame() {
         String input = Console.readLine();
         validateEmpty(input);
         if (input.equals("1")) {
