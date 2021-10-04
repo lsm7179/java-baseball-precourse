@@ -19,8 +19,4 @@ public enum View {
         System.out.print(this.stringToprint);
     }
 
-    public String getStringToprint() {
-        return stringToprint;
-    }
-
 }
