@@ -29,7 +29,6 @@ public class InputHandler {
     private void validateRange(String input) {
         List<Integer> list = addNumber(input);
         for (int no : list) {
-            System.out.println(no);
             isRange(no);
         }
     }
